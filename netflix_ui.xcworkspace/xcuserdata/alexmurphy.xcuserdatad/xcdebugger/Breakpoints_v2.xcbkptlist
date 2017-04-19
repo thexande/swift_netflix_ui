@@ -10,13 +10,77 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "netflix_ui/RequestHelper.swift"
-            timestampString = "514270618.863075"
+            timestampString = "514273507.469111"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
             landmarkName = "getTVEpisodes()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "netflix_ui/RequestHelper.swift"
+            timestampString = "514273507.469111"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "fetchTVSeasonIds(for:with:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "netflix_ui/RequestHelper.swift"
+            timestampString = "514273564.545205"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "fetchTVSeasonIds(for:with:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static netflix_ui.RequestHelper.fetchTVSeasonIds (for : Swift.String, with : Swift.Int) -&gt; PromiseKit.Promise&lt;Swift.Array&lt;netflix_ui.TVSeasonEpisodeIntermediate&gt;&gt;"
+                  moduleName = "netflix_ui"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexmurphy/Documents/screencast/netflix_ui/netflix_ui/RequestHelper.swift"
+                  timestampString = "514273572.784407"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "47"
+                  endingLineNumber = "47"
+                  offsetFromSymbolStart = "28">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static netflix_ui.RequestHelper.(fetchTVSeasonIds (for : Swift.String, with : Swift.Int) -&gt; PromiseKit.Promise&lt;Swift.Array&lt;netflix_ui.TVSeasonEpisodeIntermediate&gt;&gt;).(closure #1)"
+                  moduleName = "netflix_ui"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexmurphy/Documents/screencast/netflix_ui/netflix_ui/RequestHelper.swift"
+                  timestampString = "514273572.788209"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "48"
+                  endingLineNumber = "48"
+                  offsetFromSymbolStart = "164">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

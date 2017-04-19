@@ -24,6 +24,21 @@ struct TVEpisode {
     let imdb_id: String
 }
 
+struct TVEpisodeIntermediate {
+    let episode_number: Int
+    let imdb_id: String
+}
+
+struct TVSeasonIntermediate {
+    let season_number: Int
+    let episode_intermediates: [TVEpisodeIntermediate]
+}
+
+struct TVSeriesIntermediate {
+    let series_id: String
+    let season_intermediates: [TVSeriesIntermediate]
+}
+
 struct TVSeries {
     let title: String
     let seasons: [Int:[TVEpisode]]
@@ -31,17 +46,41 @@ struct TVSeries {
 
 class RequestHelper {
     
-//    
+    
 //    static func fetchTVSeries(for imdb_id: String) -> Promise<TVSeries> {
 //        return Promise { fulfill, reject in
-//            var tvEpisodes = [Promise<TVEpisode>]()
 //            
 //        }
 //    }
-//    
-//    static func fetchTVSeason(for imdb_id: String, with season_total: Int) -> Promise<[String]> {
-//        
-//    }
+    
+    static func fetchTVSeasonEpisodeIntermediates(for imdb_show_id: String, with season_number: Int) -> Promise<TVSeasonIntermediate> {
+        return Promise { fulfill, reject in
+            var intermediateTVSeasonEpisodes = [TVEpisodeIntermediate]()
+            Alamofire.request(URL(string: "https://www.omdbapi.com/?i=\(imdb_show_id)&Season=\(season_number)")!)
+                .responseSwiftyJSON(completionHandler: { response in
+                    print(response.result.value?.dictionary)
+                    if let seasonEpisodes = response.result.value?.dictionary?["Episodes"]?.arrayValue {
+                        
+                        for episode in seasonEpisodes {
+                            let episode_value = episode
+                            let intermediate = TVEpisodeIntermediate(episode_number: episode_value["Episode"].intValue, imdb_id: episode_value["imdbID"].stringValue)
+                            intermediateTVSeasonEpisodes.append(intermediate)
+                        }
+                        fulfill(TVSeasonIntermediate(season_number: season_number, episode_intermediates: intermediateTVSeasonEpisodes))
+                    }
+                })
+        }
+    }
+    
+    static func fetchAllTVSeasonIntermediates(for imdb_show_id: String, with season_total: Int) -> [Promise<TVSeasonIntermediate>] {
+        return Promise { fulfill, reject in
+            var seasonIntermediates = [Promise<TVSeasonIntermediate>]()
+            for season_index in 1...season_total {
+                seasonIntermediates.append(self.fetchTVSeasonEpisodeIntermediates(for: imdb_show_id, with: season_index))
+            }
+            fulfill(seasonIntermediates)
+        }
+    }
     
     static func fetchTVSeasonTotal(for imdb_id: String) -> Promise<Int> {
         return Promise { fulfill, reject in
@@ -78,11 +117,14 @@ class RequestHelper {
 
 class TelevisionEpisodeHelper {
     static func getTVEpisodes() {
+        var tvID = "tt0944947"
         _ = firstly {
 //                RequestHelper.fetchTVEpisode(for: "tt1829964")
-                RequestHelper.fetchTVSeasonTotal(for: "tt0944947")
-            }.then { seasonTotal -> Void in
-                print(seasonTotal)
-        }
+                RequestHelper.fetchTVSeasonTotal(for: tvID)
+            }.then { seasonTotal -> Promise<[TVSeasonEpisodeIntermediate]> in
+                return RequestHelper.fetchTVSeasonIds(for: tvID, with: seasonTotal)
+            }.then { intermediates in
+                print(intermediates)
+            }
     }
 }
