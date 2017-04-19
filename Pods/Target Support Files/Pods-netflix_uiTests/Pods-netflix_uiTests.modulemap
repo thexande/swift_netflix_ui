@@ -1,0 +1,6 @@
+framework module Pods_netflix_uiTests {
+  umbrella header "Pods-netflix_uiTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
